@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SE2_Schadenbauer_Einzelprojekt</string>
+    <string name="matriculationNumber">12216695</string>
+    <string name="textButtonSendMatriculationNumber">Send matriculation number to server</string>
+    <string name="textButtonShowOnlyPrimeNumbers">Show only prime numbers</string>
+    <string name="textTextViewMatriculationNumber">Add your matriculation number</string>
 </resources>

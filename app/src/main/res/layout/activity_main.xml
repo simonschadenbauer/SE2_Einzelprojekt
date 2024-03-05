@@ -6,24 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <TextView
+        android:id="@+id/textViewMatriculationNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/textTextViewMatriculationNumber"
+        />
     <EditText
         android:id="@+id/inputMatriculationNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewMatriculationNumber"
         android:layout_margin="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:inputType="number"
-        android:text="12216695"
+        android:textAlignment="center"
+        android:autofillHints="matriculation number"
+        android:text="@string/matriculationNumber"
+        tools:ignore="LabelFor"
         />
 
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputMatriculationNumber"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textSize="18sp"
         android:text=""
         />
 
@@ -35,7 +58,9 @@
         app:layout_constraintTop_toBottomOf="@id/textViewResult"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:text="Send matriculation number to server"
+        android:layout_marginStart="16dp"
+        android:text="@string/textButtonSendMatriculationNumber"
+        android:textSize="16sp"
         android:onClick="onClickSendMatriculationNumber" />
 
     <Button
@@ -46,7 +71,9 @@
         app:layout_constraintTop_toBottomOf="@id/buttonSendMatriculationNumberToServer"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:text="Show only prime numbers"
+        android:layout_marginStart="16dp"
+        android:text="@string/textButtonShowOnlyPrimeNumbers"
+        android:textSize="16sp"
         android:onClick="onClickShowOnlyPrimeNumbers"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
