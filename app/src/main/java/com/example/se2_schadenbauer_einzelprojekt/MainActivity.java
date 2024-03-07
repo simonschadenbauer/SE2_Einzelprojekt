@@ -25,12 +25,9 @@ import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-;
-
 public class MainActivity extends AppCompatActivity {
-    private static String host = "se2-submission.aau.at";
-    private static int port = 20080;
-    //private Subscription subscription;
+    private final static String host = "se2-submission.aau.at";
+    private final static int port = 20080;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,18 +73,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Observable<String> getNetworkCall() {
-        Observable<String> tcpCallObservable = Observable.create(emitter -> {
+        return Observable.create(emitter -> {
             try {
-                // Connect to the server
                 Socket socket = new Socket(host, port);
-
-                // Send data to the server (if necessary)
                 String matriculationNumber = ((EditText) findViewById(R.id.inputMatriculationNumber)).getText().toString();
+
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
                 out.write(matriculationNumber + "\n");
                 out.flush();
 
-                // Receive response from the server
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 StringBuilder responseBuilder = new StringBuilder();
                 String line;
@@ -95,10 +89,8 @@ public class MainActivity extends AppCompatActivity {
                     responseBuilder.append(line).append("\n");
                 }
 
-                // Emit the response to observers
                 emitter.onNext(responseBuilder.toString());
 
-                // Close the socket
                 out.close();
                 reader.close();
                 socket.close();
@@ -108,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 emitter.onError(e);
             }
         });
-        return tcpCallObservable;
     }
 
     public void onClickShowOnlyPrimeNumbers (View view)
@@ -121,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
         catch(Exception ex)
         {
             TextView textResult = findViewById(R.id.textViewResult);
-            textResult.setText("Exception occured: " + ex.getMessage());
+            textResult.setText(ex.getMessage());
         }
     }
 
-    private String getOnlyPrimeNumbersFromMatriculationNumber(String matriculationNumber) throws Exception
+    private String getOnlyPrimeNumbersFromMatriculationNumber(String matriculationNumber)
     {
         String primes = "";
         for(char c : matriculationNumber.toCharArray() )
@@ -135,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         return primes;
     }
 
-    private boolean isPrime(char c) throws Exception
+    private boolean isPrime(char c)
     {
         int num = Integer.parseInt(String.valueOf(c));
 
